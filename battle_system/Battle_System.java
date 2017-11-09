@@ -2,63 +2,60 @@ package battle_system;
 
 import java.util.Scanner;
 import java.util.Random;
-import character.Character_Orc;
-import enemy.Enemy_Quotes;
-import character.Character_Warrior;
-import enemy.Enemy_Class;
-import character.Weapons;
-import character.Character_Class;
+import enemy.*;
+import character.*;
 import shopping.Inventory;
 	
 public class Battle_System {
 		Enemy_Quotes enemyQuotes = new Enemy_Quotes();
+		
 		Character_Class c = new Character_Class();
 		Weapons  weapon = new Weapons();
 		Magic magic_attacks = new Magic();
 		Inventory inventory = new Inventory();
 		private String user,enemyName;
 		private int magic, enemy_health, magic_options, physical_options, damage, melee, character_health, boost;
-		//private int sword_attack_left=5,punch_attack_left=5;
 		
 		/*
 		 * We should re-adjust the entire battle system 
 		 * 
 		 * */
 		
+		/** Enemy List
+		 * -------------
+		 * Giant
+		 * Goblin
+		 * Grunt
+		 * Halfing
+		 * Necromancer
+		 * Scorpion
+		 * Shapeshifter
+		 * Siren
+		 * Troll
+		 * -------------
+		 * */
 		
-		public void battleSystem(int choice) throws Exception{
+		Character_Class enemy = Character_Select.randomEnemy();
+		
+		public void battleSystem(Character_Class player) throws Exception{
 			@SuppressWarnings("resource")
 			Scanner input = new Scanner(System.in);
 			Random number = new Random();
-			int action;
+			int action, menu_selection;
 			//char type;
 			double r = Math.random();
 			//boolean temp;
+
+			character_health = player.getHealth();
+			user = player.getName();	
 			
-			if(choice == 1){
-				Character_Warrior character  = new Character_Warrior();
-				character_health = character.getHealth();
-				user = character.getName();
-			}
-			else if(choice == 2){
-				Character_Orc character = new Character_Orc();
-				character_health = character.getHealth();
-				user = character.getName();
-			}
-				
+			enemyName = enemy.getName();
+			enemy_health = enemy.getHealth();
 			
 			/*The eName array and the selection array are in a random. 
 			 * I assigned each method with health and a name. 
 			 * I then assign enemy to which ever enemy method is chosen in the array. 
 			 * enemyName is assigned to the same thing as enemy.*/
-			
-			String [] eName ={enemy.getGruntName(),enemy.getGoblinName(),enemy.getTrollsName(),enemy.getScorpionName(),enemy.getHalflingName()};		
-			int [] selection = {enemy.getGruntHealth(),enemy.getGoblinHealth(),enemy.getTrollHealth(),enemy.getScorpionHealth(),enemy.getHalflingHealth()};
-			for(int counter = 0; counter < 1;counter++){
-				int rand = (int) (Math.random() * selection.length);
-				enemy_health = selection[rand];
-				enemyName = eName[rand];
-			}
 			
 
 			/* ------------------------------------------
@@ -241,8 +238,31 @@ public class Battle_System {
 			 * [Start Battle]
 			 * Choose an Action: Melee(1) | Magic(2) 
 			 * */
+			
+			while(true){
+				System.out.println("\nDisplay Character Stats(1) | Display Enemy Stats(2) | Choose Weapons/Abilities(3) | Start Battle(4)");
+				menu_selection = input.nextInt();
+				if (menu_selection == 1){
+					player.displayStats();
+					menu_selection = 0;
+				}
+				
+				else if (menu_selection == 2){
+					enemy.displayStats();
+					menu_selection = 0;
+				}
+				
+				else if (menu_selection == 3){
+					//Displays weapons and Items
+					System.out.println("Weapons/Items");
+					menu_selection = 0;
+				}
+				else if (menu_selection == 4){
+					break;
+				}
+			}
 		
-			while(true){ //If your health is greater than 0, keep going through the loop.
+			while(true){ //If your health is greater than 0, keep going through the loop.		
 				System.out.println("\nChoose an Action:  Melee(1)/Magic(2): ");
 				action = input.nextInt();
 				if(action == 2){
@@ -259,20 +279,6 @@ public class Battle_System {
 				else {
 					System.out.println("Please choose a valid response");
 				}
-//				if(physical_options == 1 && punch_attack_left == 0){
-//					action = 0;
-//				}
-				
-//				if(action == 0){
-//				System.out.println("You can't use this Punch Attack anymore.");
-//				melee = 0;
-//				}
-//				if(physical_options == 1 ){
-//					punch_attack_left--;
-//				}
-//				if(physical_options == 2 ){
-//					sword_attack_left--;
-//				}
 					
 				for(int counter=0; counter<1;counter++){  
 					damage = 1+number.nextInt(10); //default enemy damage
@@ -289,9 +295,6 @@ public class Battle_System {
 					if(action == 2 && magic_options == 1){
 						magic = 1+number.nextInt(magic_attacks.get_Flameball());
 					}
-//					if(action == 0){
-//						break;
-//					}
 				}
 					
 				if(physical_options == 1 && r <= .30 || physical_options == 2 && r <= .30){
@@ -448,4 +451,5 @@ public class Battle_System {
 				 ie.printStackTrace(); 
 			 } 	
 	}
+
 }	//public class battle_SystemTest
