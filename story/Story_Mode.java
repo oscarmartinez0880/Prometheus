@@ -293,6 +293,7 @@ public void chapter3(Character_Class player) throws Exception {
 		catch(InterruptedException ie) {
 			ie.printStackTrace();
 		}
+		enemy = new Enemy_Siren();
 		battle.battleSystem(player, enemy);  //Battle Siren
 		try {
 			Thread.sleep(2000);
@@ -399,6 +400,7 @@ public void chapter3(Character_Class player) throws Exception {
 		catch(InterruptedException ie) {
 			ie.printStackTrace();
 		}
+		enemy = new Enemy_Giant();
 		battle.battleSystem(player, enemy); //Battle Giant
 		try {
 			Thread.sleep(2000);
@@ -453,6 +455,7 @@ public void chapter3(Character_Class player) throws Exception {
 		catch(InterruptedException ie) {
 			ie.printStackTrace();
 		}
+		enemy = new Enemy_Grunt();
 		battle.battleSystem(player, enemy); //Battle Grunt
 		try {
 			Thread.sleep(2000);
@@ -496,8 +499,8 @@ public void chapter3(Character_Class player) throws Exception {
 			catch(InterruptedException ie){
 				ie.printStackTrace();
 			}
-		Enemy_Scorpion scorpion = new Enemy_Scorpion();
-		battle.battleSystem(player, scorpion);
+		enemy = new Enemy_Scorpion();
+		battle.battleSystem(player, enemy);
 		System.out.println("After defeating the scorpion, you coninue on your journey.");
 		System.out.println("You continue through the desert as you see a small pyramid in the distance.");
 		try{
@@ -523,8 +526,8 @@ public void chapter3(Character_Class player) throws Exception {
 			catch(InterruptedException ie){
 				ie.printStackTrace();
 			}
-		Enemy_Necromancer necro = new Enemy_Necromancer();
-		battle.battleSystem(player, necro);
+		enemy = new Enemy_Necromancer();
+		battle.battleSystem(player, enemy);
 		System.out.println("Now that you have defeated the Necromancer, you have completed your journey!");
 		System.out.println("Congratulations!!");
 		endStory();
