@@ -61,11 +61,6 @@ public class Story_Mode {
 	
 	/*Beginning the third part of the tutorial*/
 	private void tutorial3(Character_Class player) throws Exception{
-		String user;
-		System.out.println("What will you name your character?");
-		response2 = input.nextLine();
-		user = response2;
-		System.out.println("Hello! "+ user);
 		System.out.println("You're about to enter a world full of adventure.");
 		System.out.println("Shall I remind you again of your character choice? (Yes/No)");
 		response2 = input.nextLine();
