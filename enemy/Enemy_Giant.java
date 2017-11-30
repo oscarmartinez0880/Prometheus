@@ -1,7 +1,6 @@
 package enemy;
-import character.Character_Class;
 
-public class Enemy_Giant extends Character_Class {
+public class Enemy_Giant extends Enemy {
 	
 	
 	// Enemy_Giant constructor
@@ -19,5 +18,19 @@ public class Enemy_Giant extends Character_Class {
 		super.resistance = 80;
 		super.strength = 190;
 	}
-
+	
+	public void levelUp(int exp) {
+		while(exp >= MAX_EXP) {
+			exp -= MAX_EXP;
+			if(exp < 0) {
+				exp = 0;
+			}
+			health += 15;
+			magic += 3;
+			speed += 6;
+			strength += 10;
+			resistance += 15;
+			intelligence += 2;
+		}
+	}
 }
