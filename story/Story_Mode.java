@@ -30,8 +30,6 @@ public class Story_Mode {
 	public void tutorial(Character_Class player) throws Exception{
 		System.out.println("A quick simulated battle is about to commence. ");
 		System.out.println("Please pay attention as to what's going on. ");
-		System.out.println("Here are 5 free levels!");
-		player.levelUp(1000);
 		battle.battleSystem(player,enemy); //Starts the battle class.
 		tutorial2(player); 
 		}

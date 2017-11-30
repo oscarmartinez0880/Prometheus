@@ -240,6 +240,10 @@ public class Battle_System {
 							player.backpack.viewInventory(); //Display weapons
 							int response = input.nextInt();
 							player.setPrimaryWeapon(player.backpack.selectWeapon(response));
+							//Temporarily make Sword Weapon OP
+							if(player.getPrimaryWeapon().equalsIgnoreCase("Sword Weapon")) {
+								player.setPrimaryWeaponDamage(150);
+							}
 							menu_selection = 0;
 						}
 						else if (menu_selection == 4){
